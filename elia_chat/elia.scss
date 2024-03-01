@@ -35,6 +35,11 @@ Chat > VerticalScroll {
   box-sizing: border-box;
 }
 
+#chat-textarea {
+  height: auto;
+  box-sizing: border-box;
+}
+
 ChatOptions {
   border-left: $left-border-trim;
 }
@@ -92,6 +97,15 @@ AgentIsTyping LoadingIndicator {
   width: 1fr;
   content-align: center middle;
   margin-left: 2;
+}
+
+#chat-list {
+	display: none;
+}
+
+ListContainer.-show-chat-list #chat-list {
+    display: block;
+    max-width: 50%;
 }
 
 ChatList {
@@ -302,6 +316,10 @@ Input {
 }
 
 Input:focus {
+  border: tall $main;
+}
+
+TextArea:focus {
   border: tall $main;
 }
 

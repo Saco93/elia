@@ -162,3 +162,6 @@ cython_debug/
 elia.sqlite
 **/*.pyc
 resources/conversations.json
+
+# Personal scripts
+elia.sh

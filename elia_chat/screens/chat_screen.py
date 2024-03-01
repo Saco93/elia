@@ -11,6 +11,7 @@ from elia_chat.widgets.chat import Chat
 from elia_chat.widgets.chat_header import ChatHeader
 from elia_chat.widgets.chat_list import ChatList
 from elia_chat.widgets.chat_options import ModelSet, ModelPanel
+from elia_chat.widgets.list_container import ListContainer
 
 
 class ChatScreen(Screen):
@@ -23,6 +24,7 @@ class ChatScreen(Screen):
             key="ctrl+s", action="focus('cl-option-list')", description="Focus Chats"
         ),
         Binding(key="i", action="focus('chat-input')", description="Focus Input"),
+        Binding(key="ctrl+t", action="focus('chat-textarea')", description="Focus Textarea"),
     ]
 
     def __init__(self):
@@ -31,8 +33,9 @@ class ChatScreen(Screen):
         self.chat = Chat()
 
     def compose(self) -> ComposeResult:
-        yield ChatList(id="chat-list")
-        yield self.chat
+        with ListContainer():
+            yield ChatList(id="chat-list")
+            yield self.chat
         yield Footer()
 
     @on(Chat.UserMessageSubmitted)

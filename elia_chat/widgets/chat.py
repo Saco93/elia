@@ -31,6 +31,7 @@ from elia_chat.widgets.chat_options import (
     ChatOptions,
     GPTModel,
 )
+from elia_chat.widgets.chat_textarea import ChatTextArea
 from elia_chat.widgets.chatbox import Chatbox
 
 
@@ -241,6 +242,13 @@ class Chat(Widget):
             event.input.value = ""
             await self.new_user_message(user_message)
 
+    @on(ChatTextArea.Submitted, "#chat-textarea")
+    async def user_chat_text_message_submitted(self, event: ChatTextArea.Submitted) -> None:
+        if self.allow_input_submit is True:
+            user_message = event.text_area.text
+            event.text_area.clear()
+            await self.new_user_message(user_message)
+
     async def load_chat(self, chat: ChatData) -> None:
         assert self.chat_options is not None
         assert self.chat_container is not None
@@ -282,7 +290,8 @@ class Chat(Widget):
     def compose(self) -> ComposeResult:
         yield ChatHeader()
         with Vertical(id="chat-input-container"):
-            yield Input(placeholder="[I] Enter your message here...", id="chat-input")
+            # yield Input(placeholder="[I] Enter your message here...", id="chat-input")
+            yield ChatTextArea(id="chat-textarea")
             yield AgentIsTyping()
 
         with VerticalScroll() as vertical_scroll:
@@ -304,7 +313,8 @@ class Chat(Widget):
         app_context: EliaContext = self.app.elia_context  # type: ignore[attr-defined]
         gpt_model = app_context.gpt_model
         self.chat_data.model_name = gpt_model.name
-        chat_input = self.query_one("#chat-input")
+        # chat_input = self.query_one("#chat-input")
+        chat_input = self.query_one("#chat-textarea")
         if app_context.chat_message is not None:
             await self.prepare_for_new_chat()
             await self.new_user_message(app_context.chat_message)
