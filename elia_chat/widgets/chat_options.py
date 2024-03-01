@@ -59,7 +59,7 @@ AVAILABLE_MODELS = [
         "complex tasks which require advanced reasoning.",
         css_class="gpt4",
         model=ChatOpenAI(
-            model_name="gpt-4-1106-preview",
+            model="gpt-4-turbo-preview",
             streaming=True,
             callbacks=[callback],
         ),

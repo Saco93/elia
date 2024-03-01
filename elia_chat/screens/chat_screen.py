@@ -21,9 +21,9 @@ class ChatScreen(Screen):
     BINDINGS = [
         Binding("ctrl+n", action="new_chat", description="New Chat"),
         Binding(
-            key="ctrl+s", action="focus('cl-option-list')", description="Focus Chats"
+            key="ctrl+s", action="focus_chats('cl-option-list')", description="Focus Chats"
         ),
-        Binding(key="i", action="focus('chat-input')", description="Focus Input"),
+        # Binding(key="i", action="focus('chat-input')", description="Focus Input"),
         Binding(key="ctrl+t", action="focus('chat-textarea')", description="Focus Textarea"),
     ]
 
@@ -33,10 +33,15 @@ class ChatScreen(Screen):
         self.chat = Chat()
 
     def compose(self) -> ComposeResult:
-        with ListContainer():
+        self.list_container = ListContainer()
+        with self.list_container:
             yield ChatList(id="chat-list")
             yield self.chat
         yield Footer()
+
+    async def action_focus_chats(self,widget_id:str) -> None:
+        self.list_container.show_chat_list = True
+        await self.run_action(f"focus('{widget_id}')")
 
     @on(Chat.UserMessageSubmitted)
     def user_message_submitted(self, event: Chat.UserMessageSubmitted) -> None:

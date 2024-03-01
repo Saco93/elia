@@ -63,7 +63,7 @@ class ChatTextArea(TextArea):
             "ctrl+u", "delete_to_start_of_line", "delete to line start", show=False
         ),
         Binding("ctrl+k", "delete_to_end_of_line", "delete to line end", show=False),
-        Binding("ctrl+r", "submit_text", "submit text", show=True),
+        Binding("ctrl+r", "submit_text", "Submit Text", show=True),
     ]
     """
     | Key(s)                 | Description                                  |
