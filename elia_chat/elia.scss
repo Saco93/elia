@@ -234,6 +234,22 @@ ModelPanel.gpt4.selected {
   border: thick $success-lighten-1;
 }
 
+ModelPanel.claude3 {
+  color: $text;
+  background: $panel;
+  border: thick $warning;
+}
+
+ModelPanel.claude3 :hover {
+  background: $panel-lighten-1;
+  border: thick $warning-lighten-1;
+}
+
+ModelPanel.claude3.selected {
+  background: $warning-darken-2;
+  border: thick $warning-lighten-1;
+}
+
 Footer {
   background: $main;
 }

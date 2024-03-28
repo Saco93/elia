@@ -4,7 +4,8 @@ from dataclasses import dataclass
 from typing import Dict
 
 from langchain.callbacks import AsyncIteratorCallbackHandler
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
+from langchain_anthropic import ChatAnthropic
 from langchain.chat_models.base import BaseChatModel
 from langchain.llms.base import LLM
 from rich.console import RenderableType
@@ -42,7 +43,7 @@ DEFAULT_MODEL = GPTModel(
     description="The fastest ChatGPT model, great for most everyday tasks.",
     css_class="gpt35",
     model=ChatOpenAI(
-        model_name="gpt-3.5-turbo",
+        model="gpt-3.5-turbo",
         streaming=True,
         callbacks=[callback],
     ),
@@ -60,6 +61,20 @@ AVAILABLE_MODELS = [
         css_class="gpt4",
         model=ChatOpenAI(
             model="gpt-4-turbo-preview",
+            streaming=True,
+            callbacks=[callback],
+        ),
+        token_limit=128000,
+    ),
+    GPTModel(
+        name="claude-3-opus",
+        icon="💭",
+        provider="Anthropic",
+        product="Claude",
+        description="Most powerful model for highly complex tasks.",
+        css_class="claude3",
+        model=ChatAnthropic(
+            model_name="claude-3-opus-20240229",
             streaming=True,
             callbacks=[callback],
         ),
