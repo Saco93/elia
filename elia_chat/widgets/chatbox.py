@@ -45,7 +45,7 @@ class Chatbox(Widget, can_focus=True):
 
     @property
     def markdown(self) -> Markdown:
-        return Markdown(self.message.content or "")
+        return Markdown(self.message.content or "", code_theme="one-dark", inline_code_theme="one-dark")
 
     def render(self) -> RenderableType:
         return self.markdown
