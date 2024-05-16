@@ -52,7 +52,8 @@ DEFAULT_MODEL = GPTModel(
 AVAILABLE_MODELS = [
     DEFAULT_MODEL,
     GPTModel(
-        name="gpt-4-turbo",
+        # name="gpt-4-turbo",
+        name="gpt-4o",
         icon="🧠",
         provider="OpenAI",
         product="ChatGPT",

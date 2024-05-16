@@ -3,6 +3,7 @@ from __future__ import annotations
 from langchain.schema import BaseMessage
 from rich.console import RenderableType
 from rich.markdown import Markdown
+from rich.align import Align
 from textual.binding import Binding
 from textual.geometry import Size
 from textual.widget import Widget
