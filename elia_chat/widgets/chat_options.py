@@ -36,48 +36,53 @@ class GPTModel:
 
 
 DEFAULT_MODEL = GPTModel(
-    name="gpt-3.5-turbo",
-    icon="⚡️",
+    # name="gpt-4-turbo",
+    name="gpt-4o",
+    icon="🧠",
     provider="OpenAI",
     product="ChatGPT",
-    description="The fastest ChatGPT model, great for most everyday tasks.",
-    css_class="gpt35",
+    description="The most powerful ChatGPT model, capable of "
+    "complex tasks which require advanced reasoning.",
+    css_class="gpt4",
     model=ChatOpenAI(
-        model="gpt-3.5-turbo",
-        streaming=True,
-        callbacks=[callback],
+         model="gpt-4-turbo-preview",
+         streaming=True,
+         callbacks=[callback],
     ),
-    token_limit=4096,
+    token_limit=128000,
 )
+
 AVAILABLE_MODELS = [
     DEFAULT_MODEL,
+    # GPTModel(
+    #     # name="gpt-4-turbo",
+    #     name="gpt-4o",
+    #     icon="🧠",
+    #     provider="OpenAI",
+    #     product="ChatGPT",
+    #     description="The most powerful ChatGPT model, capable of "
+    #     "complex tasks which require advanced reasoning.",
+    #     css_class="gpt4",
+    #     model=ChatOpenAI(
+    #         model="gpt-4-turbo-preview",
+    #         streaming=True,
+    #         callbacks=[callback],
+    #     ),
+    #     token_limit=128000,
+    # ),
     GPTModel(
-        # name="gpt-4-turbo",
-        name="gpt-4o",
-        icon="🧠",
-        provider="OpenAI",
-        product="ChatGPT",
-        description="The most powerful ChatGPT model, capable of "
-        "complex tasks which require advanced reasoning.",
-        css_class="gpt4",
-        model=ChatOpenAI(
-            model="gpt-4-turbo-preview",
-            streaming=True,
-            callbacks=[callback],
-        ),
-        token_limit=128000,
-    ),
-    GPTModel(
-        name="claude-3-opus",
+        name="claude-3-5-sonnet",
         icon="💭",
         provider="Anthropic",
         product="Claude",
-        description="Most powerful model for highly complex tasks.",
+        description="Most intelligent model",
         css_class="claude3",
         model=ChatAnthropic(
-            model_name="claude-3-opus-20240229",
+            model_name="claude-3-5-sonnet-20240620",
             streaming=True,
             callbacks=[callback],
+            timeout=None,
+            api_key=None
         ),
         token_limit=128000,
     ),
